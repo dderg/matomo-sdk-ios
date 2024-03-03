@@ -103,8 +103,6 @@ extension Device {
             return "iOS"
             #elseif os(tvOS)
             return "tvOS"
-            #elseif os(watchOS)
-            return "watchOS"
             #endif
         }
         
@@ -125,6 +123,28 @@ extension Device {
             return bounds.size
         }
     }
+#elseif os(visionOS)
+import UIKit
+extension Device {
+    internal static func operatingSystemForCurrentDevice() -> String {
+        return "visionOS"
+    }
+    
+    /// Returns the version number of the current OS as String i.e. "1.2" or "9.4"
+    internal static func osVersionForCurrentDevice() -> String  {
+        return UIDevice.current.systemVersion
+    }
+    
+    // Returns the screen size in points
+    internal static func screenSizeForCurrentDevice() ->  CGSize {
+        return CGSize.zero
+    }
+    
+    // Returns the screen size in pixels
+    internal static func nativeScreenSizeForCurrentDevice() ->  CGSize {
+        return CGSize.zero
+    }
+}
 #elseif os(watchOS)
 
 import WatchKit
